@@ -1,3 +1,8 @@
+variable "project_version" {
+  type = string
+  default = "latest"
+}
+
 provider "google" {
   project = "koseseg"
   region = "europe-north1"
@@ -25,7 +30,7 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = "eu.gcr.io/koseseg/koseseg:v19"
+        image = "eu.gcr.io/koseseg/koseseg:${var.project_version}"
       }
     }
   }
