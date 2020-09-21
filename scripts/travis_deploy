@@ -6,11 +6,6 @@ npm run build
 # Build the Docker Image
 docker build -f travis.Dockerfile -t $PROJECT_NAME .
 
-# If the GCloud SDK is not already cached, download it and unpack it
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then
-     curl https://sdk.cloud.google.com | bash;
-  fi
-
 # Authenticate with GCloud SDK
 gcloud auth activate-service-account --key-file keyfile.json
 gcloud config set project $PROJECT_NAME
