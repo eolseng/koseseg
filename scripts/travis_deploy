@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Build the Next.js application
+npm run build
+
+# Build the Docker Image
 docker build -f travis.Dockerfile -t $PROJECT_NAME .
 
 # Login to Google Container Registry using encrypted Keyfile
