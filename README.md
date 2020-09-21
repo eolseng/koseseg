@@ -28,3 +28,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Travis-CI Setup:
+
+#### GCP Service Account
+The Service Account needs the following roles:
+* `Service Account User` - allows the account to run operations as a service account.
+* `Storage Admin` - allows the service account to access both the Google Container Registry and Terraform State bucket.
+* `Cloud Run Admin` - allows the service account to have full control over Cloud Run resources.

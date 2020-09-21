@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Installing Terraform version ${TF_VERSION}"
-wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip  > /dev/null
-unzip terraform_"$TF_VERSION"_linux_amd64.zip > /dev/null
-sudo mv terraform $HOME/bin > /dev/null
-rm terraform_"$TF_VERSION"_linux_amd64.zip > /dev/null
+wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip  &> /dev/null
+unzip terraform_"$TF_VERSION"_linux_amd64.zip &> /dev/null
+sudo mv terraform $HOME/bin &> /dev/null
+rm terraform_"$TF_VERSION"_linux_amd64.zip &> /dev/null
 echo "Done installing Terraform"
