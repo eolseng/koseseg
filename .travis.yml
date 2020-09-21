@@ -17,7 +17,7 @@ env:
 cache:
   directories:
     # Cache of Google Cloud SDK
-    - $HOME/google-cloud-sdk/
+#    - $HOME/google-cloud-sdk/
     # Yarn, NPM and Next.JS dependency caching
     - $HOME/.cache/yarn
     - node_modules
@@ -40,7 +40,7 @@ before_deploy:
 #    fi
   - rm -rf $HOME/google-cloud-sdk
   - curl https://sdk.cloud.google.com
-  - ls -a $HOME/google-cloud-sdk/
+  - ls -a
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components install docker-credential-gcloud;
   - gcloud version
