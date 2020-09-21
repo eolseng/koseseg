@@ -28,16 +28,11 @@ cache:
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
+  - ./scripts/install_terraform
 
 script:
   - npm run build
   - echo "Skipping tests"
-
-before_deploy:
-  - wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip
-  - unzip terraform_"$TF_VERSION"_linux_amd64.zip
-  - sudo mv terraform $HOME/bin
-  - rm terraform_"$TF_VERSION"_linux_amd64.zip
 
 deploy:
   skip_cleanup: true
