@@ -27,12 +27,13 @@ cache:
     - ".next/cache"
 
 before_install:
+  # Decrypts the keyfile.json for the GCP Service Account
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
+  # Installs Terraform
   - bash ./scripts/install_terraform
 
 script:
   - npm run build
-  - echo "Skipping tests"
 
 deploy:
   skip_cleanup: true
