@@ -1,6 +1,6 @@
 #!/bin/bash
-# Print each line in the script before executing (-v) and exit the script early if a line fails (-e)
-set -ev
+# Exit the script early if a line fails (-e)
+set -e
 echo "Installing Terraform version ${TF_VERSION}"
 wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip  &> /dev/null
 unzip terraform_"$TF_VERSION"_linux_amd64.zip &> /dev/null

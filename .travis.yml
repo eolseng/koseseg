@@ -48,7 +48,7 @@ before_deploy:
 
 deploy:
   skip_cleanup: true
-  provider: scriptª
+  provider: script
   script: bash scripts/travis_deploy
   on:
     branch: master

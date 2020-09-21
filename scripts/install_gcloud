@@ -2,12 +2,12 @@
 set -ev
 
 echo "Setting up the Google Cloud SDK"
-gcloud version || true
 # Download and install GCloud if it does not exist in cache
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
-  echo "Google Cloud not cached - downloading and installing"
-  rm -rf "$HOME"/google-cloud-sdk;
-  curl https://sdk.cloud.google.com | bash &> /dev/null;
+  echo "Not found in cache - downloading and installing"
+  rm -rf "$HOME"/google-cloud-sdk
+  curl https://sdk.cloud.google.com | bash &>/dev/null
+else
+  echo "Found in cache - continuing"
 fi
-gcloud version
 echo "Done setting up the Google Cloud SDK"
