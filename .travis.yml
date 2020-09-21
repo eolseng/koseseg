@@ -17,7 +17,7 @@ env:
 
     # Terraform Setup
     - TF_VERSION=0.13.3
-    - TF_INIT_CLI_OPTIONS="-reconfigure -input=false"
+    - TF_INIT_CLI_OPTIONS="-input=false"
     - TF_VALIDATION_CLI_OPTIONS=""
     - TF_PLAN_CLI_OPTIONS="-lock=false -input=false"
     - TF_APPLY_CLI_OPTIONS="-var project_version=$PROJECT_VERSION -auto-approve -input=false"
@@ -26,7 +26,7 @@ cache:
   directories:
     - "$HOME/.cache/yarn"
     - ".next/cache"
-#    - "$HOME/google-cloud-sdk/"
+    - "$HOME/google-cloud-sdk/"
 
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
