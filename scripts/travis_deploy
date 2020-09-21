@@ -4,7 +4,7 @@
 set -ev
 
 # Login to Google Container Registry using encrypted keyfile
-docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
+#docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
 
 # Build the Docker Image
 docker build -f travis.Dockerfile -t "$PROJECT_NAME" .
