@@ -11,6 +11,7 @@ if [[ $(terraform --version) != *"$TF_VERSION"* ]]; then
   unzip terraform_"$TF_VERSION"_linux_amd64.zip &>/dev/null
   sudo mv terraform "$HOME"/bin &>/dev/null
   rm terraform_"$TF_VERSION"_linux_amd64.zip &>/dev/null
+  terraform init $TF_INIT_CLI_OPTIONS
 else
   echo "Found in cache - continuing"
 fi
