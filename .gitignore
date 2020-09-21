@@ -38,3 +38,6 @@ yarn-error.log*
 *.iws
 *.iml
 *.ipr
+
+# Secrets
+keyfile.json

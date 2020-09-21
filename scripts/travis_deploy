@@ -1,0 +1,6 @@
+#!/bin/bash
+
+docker build -f travis.Dockerfile -t &PROJECT_NAME
+
+# Login to Google Container Registry using encrypted Keyfile
+cat keyfile.json | docker login -u _json_key --password-stdin https://eu.gcr.io
