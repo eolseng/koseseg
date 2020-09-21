@@ -5,6 +5,9 @@ node_js:
 services:
   - docker
 
+script:
+  - echo "Skipping tests"
+
 env:
   global:
     - PROJECT_NAME=koseseg
