@@ -4,7 +4,7 @@
 set -ev
 
 # Used to check if the image tag already exists in the repository
-TAG_EXISTS="$(gcloud container images list-tage --format='get(tags)' "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME" | grep "$PROJECT_VERSION")"
+TAG_EXISTS="$(gcloud container images list-tags --format='get(tags)' "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME" | grep "$PROJECT_VERSION")"
 
 # Only build and push the Docker Image if it does not exist
 if [ -z "$TAG_EXISTS" ];
