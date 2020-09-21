@@ -4,7 +4,7 @@
 docker build -f travis.Dockerfile -t $PROJECT_NAME .
 
 # Login to Google Container Registry using encrypted Keyfile
-# cat keyfile.json | docker login -u _json_key --password-stdin https://$REGISTRY_HOST_NAME
+cat keyfile.json | docker login -u _json_key --password-stdin https://$REGISTRY_HOST_NAME
 
 # Push the image to Google Container Registry
 docker tag $PROJECT_NAME $REGISTRY_HOST_NAME/$PROJECT_NAME/$PROJECT_NAME:latest

@@ -1,28 +1,22 @@
 language: node_js
 node_js:
   - 12
-
 services:
   - docker
-
 env:
   global:
     - PROJECT_NAME=koseseg
     - REGISTRY_HOST_NAME=eu.gcr.io
-
 cache:
   directories:
-    # Yarn, NPM and Next.JS dependency caching
-    - $HOME/.cache/yarn
+    - "$HOME/.cache/yarn"
     - node_modules
-    - .next/cache
+    - ".next/cache"
 
 before_install:
-  # Decrypt encrypted keyfile.json used for authenticating with Google Container Registry
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
 
 script:
-  # Skipping tests because there are no tests
   - npm run build
   - echo "Skipping tests"
 
