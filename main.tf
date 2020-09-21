@@ -1,5 +1,14 @@
 provider "google" {
   project = "koseseg"
+  region = "europe-north1"
+  credentials = file("keyfile.json")
+}
+
+data "terraform_remote_state" "default" {
+  backend = "gcs"
+  config = {
+    bucket = "koseseg-terraform-state"
+  }
 }
 
 resource "google_cloud_run_service" "default" {
