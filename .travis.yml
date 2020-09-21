@@ -36,7 +36,7 @@ before_install:
   # Install Google Cloud SDK if not cached (gcloud)
   - bash ./scripts/install_gcloud
   # Use the downloaded SDK instead of pre-installed old version on Travis-CI
-#  - source $HOME/google-cloud-sdk/path.bash.inc
+  - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud --version
   # Authenticate gcloud with the Service Account
   - gcloud auth activate-service-account --key-file keyfile.json
