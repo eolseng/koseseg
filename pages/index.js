@@ -21,7 +21,7 @@ export default function Home() {
             </main>
 
             <footer className={styles.footer}>
-                © e.olseng
+                © eolseng
             </footer>
         </div>
     )

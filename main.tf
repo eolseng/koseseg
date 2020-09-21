@@ -1,3 +1,9 @@
+terraform {
+  backend "gcs" {
+    bucket = "koseseg-terraform-state"
+  }
+}
+
 variable "project_version" {
   type = string
   default = "latest"
@@ -7,13 +13,6 @@ provider "google" {
   project = "koseseg"
   region = "europe-north1"
   credentials = file("keyfile.json")
-}
-
-terraform {
-  backend "gcs" {
-    credentials = "keyfile.json"
-    bucket = "koseseg-terraform-state"
-  }
 }
 
 resource "google_cloud_run_service" "default" {
