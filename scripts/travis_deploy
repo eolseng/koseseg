@@ -1,11 +1,10 @@
 #!/bin/bash
 
+# Login to Google Container Registry using encrypted keyfile
+docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
+
 # Build the Docker Image
 docker build -f travis.Dockerfile -t "$PROJECT_NAME" .
-
-# Login to Google Container Registry using encrypted keyfile
-#cat keyfile.json | docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME"
-docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
 
 # Push the image to Google Container Registry
 docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest
@@ -14,5 +13,5 @@ docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest
 docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
 docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
 
-terraform init "$TF_INIT_CLI_OPTIONS"
-terraform apply "$TF_APPLY_CLI_OPTIONS"
+terraform init $TF_INIT_CLI_OPTIONS
+terraform apply $TF_APPLY_CLI_OPTIONS
