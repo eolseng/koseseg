@@ -4,9 +4,9 @@ provider "google" {
   credentials = file("keyfile.json")
 }
 
-data "terraform_remote_state" "default" {
-  backend = "gcs"
-  config = {
+terraform {
+  backend "gcs" {
+    credentials = "keyfile.json"
     bucket = "koseseg-terraform-state"
   }
 }
@@ -32,7 +32,7 @@ resource "google_cloud_run_service" "default" {
 
   traffic {
     latest_revision = true
-    percent         = 100
+    percent = 100
   }
 
   autogenerate_revision_name = true
@@ -42,7 +42,8 @@ resource "google_cloud_run_service" "default" {
 data "google_iam_policy" "noauth" {
   binding {
     role = "roles/run.invoker"
-    members = ["allUsers"]
+    members = [
+      "allUsers"]
   }
 }
 
