@@ -8,6 +8,7 @@ services:
 env:
   global:
     - PROJECT_NAME=koseseg
+    - REGISTRY_HOST_NAME=eu.gcr.io
 
 before_install:
   # Decrypt encrypted keyfile.json used for authenticating with Google Container Registry
