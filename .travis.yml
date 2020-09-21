@@ -38,7 +38,7 @@ before_deploy:
     rm -rf $HOME/google-cloud-sdk;
     curl https://sdk.cloud.google.com | bash;
     fi
-  - ls -a $HOME/google-cloud-sdk
+  - ls -a $HOME/
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components install docker-credential-gcloud;
   - gcloud version
