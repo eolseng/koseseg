@@ -25,8 +25,8 @@ env:
 cache:
   directories:
     - ".next/cache"
-    - "$HOME/google-cloud-sdk/"
-    - "$HOME/bin/terraform/"
+#    - "$HOME/google-cloud-sdk/"
+#    - "$HOME/bin/terraform/"
 
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
