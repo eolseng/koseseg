@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
+# Download and install GCloud if it does not exist in cache.
+# Does not have version control.
+
 echo "Setting up the Google Cloud SDK"
-# Download and install GCloud if it does not exist in cache
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
   echo "Not found in cache - downloading and installing"
   rm -rf "$HOME"/google-cloud-sdk

@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Setting up Terraform version ${TF_VERSION}"
 # Download and install Terraform if correct version does not exist in cache
+
+echo "Setting up Terraform version ${TF_VERSION}"
 if [[ $(terraform --version) != *"$TF_VERSION"* ]]; then
   echo "Not found in cache - downloading and installing"
   rm -rf "$HOME"/bin/terraform
