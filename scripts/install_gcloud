@@ -12,4 +12,5 @@ if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
 else
   echo "Found in cache - continuing"
 fi
+source /home/travis/google-cloud-sdk/path.bash.inc
 echo "Done setting up the Google Cloud SDK"

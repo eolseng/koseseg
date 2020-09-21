@@ -13,7 +13,7 @@ env:
 
     # GCR Setup
     - REGISTRY_HOSTNAME=eu.gcr.io
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1;
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
     # Terraform Setup
     - TF_VERSION=0.13.3
@@ -31,18 +31,20 @@ cache:
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
-  # Install Terraform
+  # Install Terraform if not cached (terraform)
   - bash ./scripts/install_terraform
-  # Install the Google Cloud SDK (gcloud)
+  # Install Google Cloud SDK if not cached (gcloud)
   - bash ./scripts/install_gcloud
   # Use the downloaded SDK instead of pre-installed old version on Travis-CI
-  - source $HOME/google-cloud-sdk/path.bash.inc
+#  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud --version
   # Authenticate gcloud with the Service Account
   - gcloud auth activate-service-account --key-file keyfile.json
   # Authenticate Docker with gcloud credentials
   - gcloud auth configure-docker $REGISTRY_HOSTNAME
 
 script:
+  # Build the Next.js application
   - npm run build
 
 deploy:
