@@ -1,8 +1,8 @@
 #!/bin/bash
+set -ev
 
 echo "Setting up the Google Cloud SDK"
 gcloud version || true
-export CLOUDSDK_CORE_DISABLE_PROMPTS=1;
 # Download and install GCloud if it does not exist in cache
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
   echo "Google Cloud not cached - downloading and installing"
