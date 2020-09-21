@@ -32,8 +32,9 @@ before_deploy:
   # If the GCloud SDK is not already cached, download it and unpack it
   - if [ ! -d ${HOME}/google-cloud-sdk ]; then
     curl https://sdk.cloud.google.com | bash;
-    gcloud components install docker-credential-gcloud;
     fi
+  - gcloud components install docker-credential-gcloud;
+  - gcloud version
 
 deploy:
   skip_cleanup: true
