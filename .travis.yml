@@ -9,7 +9,7 @@ env:
   global:
     # Project Setup
     - PROJECT_NAME=koseseg
-    - PROJECT_VERSION=v20
+    - PROJECT_VERSION=v21
 
     # GCR Setup
     - REGISTRY_HOSTNAME=eu.gcr.io

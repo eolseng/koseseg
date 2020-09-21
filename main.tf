@@ -1,5 +1,6 @@
 terraform {
   backend "gcs" {
+    credentials = "keyfile.json"
     bucket = "koseseg-terraform-state"
   }
 }
