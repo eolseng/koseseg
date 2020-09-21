@@ -6,10 +6,8 @@ gcloud version || true
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
   echo "Google Cloud not cached - downloading and installing"
   rm -rf $HOME/google-cloud-sdk;
-  export CLOUDSDK_CORE_DISABLE_PROMPTS=1;
   curl https://sdk.cloud.google.com | bash &> /dev/null;
 fi
-# Add GCloud to $PATH
-
+export CLOUDSDK_CORE_DISABLE_PROMPTS=1;
 gcloud version
 echo "Done setting up the Google Cloud SDK"

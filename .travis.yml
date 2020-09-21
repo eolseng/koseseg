@@ -39,7 +39,9 @@ before_deploy:
   - bash ./scripts/install_terraform
   # Install the Google Cloud SDK (gcloud)
   - bash ./scripts/install_gcloud
+  - gcloud version
   - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud version
   # Authenticate gcloud with the Service Account
   - gcloud auth activate-service-account --key-file keyfile.json
   # Authenticate Docker with gcloud credentials
