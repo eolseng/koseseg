@@ -3,18 +3,26 @@
 # Print each line in the script before executing (-v) and exit the script early if a line fails (-e)
 set -ev
 
-# Login to Google Container Registry using encrypted keyfile
-#docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
+# Used to check if the image tag already exists in the repository
+TAG_EXISTS="$(gcloud container images list-tage --format='get(tags)' "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME" | grep "$PROJECT_VERSION")"
 
-# Build the Docker Image
-docker build -f travis.Dockerfile -t "$PROJECT_NAME" .
+# Only build and push the Docker Image if it does not exist
+if [ -z "$TAG_EXISTS" ];
+then
+  echo "Building and pushing the Docker Image with tag $PROJECT_VERSION to the repository"
 
-# Push the image to Google Container Registry
-docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest
-docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest
+  # Build the Docker Image
+  docker build -f travis.Dockerfile -t "$PROJECT_NAME" .;
 
-docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
-docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
+  # Push the image to Google Container Registry
+  docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest;
+  docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":latest;
+
+  docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION";
+  docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION";
+else
+  echo "Image with tag $PROJECT_VERSION already exists in the repository."
+fi
 
 terraform init $TF_INIT_CLI_OPTIONS
 terraform apply $TF_APPLY_CLI_OPTIONS

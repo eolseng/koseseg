@@ -15,7 +15,6 @@ env:
     - REGISTRY_HOSTNAME=eu.gcr.io
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1;
 
-
     # Terraform Setup
     - TF_VERSION=0.13.3
     - TF_INIT_CLI_OPTIONS="-reconfigure -input=false"
