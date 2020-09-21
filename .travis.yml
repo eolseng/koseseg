@@ -9,15 +9,9 @@ env:
   global:
     - PROJECT_NAME=koseseg
     - REGISTRY_HOST_NAME=eu.gcr.io
-    # Make sure Google Cloud SDK is in PATH
-    - PATH=$PATH:${HOME}/google-cloud-sdk/bin
-    # Disable prompts from Google Cloud SDK
-#    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 cache:
   directories:
-    # Cache of Google Cloud SDK
-#    - $HOME/google-cloud-sdk/
     # Yarn, NPM and Next.JS dependency caching
     - $HOME/.cache/yarn
     - node_modules
@@ -31,19 +25,6 @@ script:
   # Skipping tests because there are no tests
   - npm run build
   - echo "Skipping tests"
-
-before_deploy:
-  # If the GCloud SDK is not already cached, download it and unpack it
-#  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
-#    rm -rf $HOME/google-cloud-sdk;
-#    curl https://sdk.cloud.google.com | bash;
-#    fi
-  - rm -rf $HOME/google-cloud-sdk
-  - curl https://sdk.cloud.google.com
-  - ls -a $HOME
-  - source $HOME/google-cloud-sdk/path.bash.inc
-  - gcloud components install docker-credential-gcloud;
-  - gcloud version
 
 deploy:
   skip_cleanup: true
