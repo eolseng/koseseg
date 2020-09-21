@@ -1,12 +1,15 @@
 #!/bin/bash
 
+echo "Setting up the Google Cloud SDK"
 gcloud version || true
 # Download and install GCloud if it does not exist in cache
 if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
-    rm -rf $HOME/google-cloud-sdk;
-    export CLOUDSDK_CORE_DISABLE_PROMPTS=1;
-    curl https://sdk.cloud.google.com | bash &> /dev/null;
-  fi
+  echo "Google Cloud not cached - downloading and installing"
+  rm -rf $HOME/google-cloud-sdk;
+  export CLOUDSDK_CORE_DISABLE_PROMPTS=1;
+  curl https://sdk.cloud.google.com | bash &> /dev/null;
+fi
 # Add GCloud to $PATH
-source /home/travis/google-cloud-sdk/path.bash.inc
+
 gcloud version
+echo "Done setting up the Google Cloud SDK"
