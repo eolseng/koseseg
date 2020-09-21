@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Print each line in the script before executing (-v) and exit the script early if a line fails (-e)
+set -ev
+
 # Login to Google Container Registry using encrypted keyfile
 docker login -u _json_key --password-stdin https://"$REGISTRY_HOSTNAME" < keyfile.json
 

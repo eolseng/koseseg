@@ -6,6 +6,7 @@ terraform {
 }
 
 variable "project_version" {
+  # Is this needed?
   type = string
   default = "latest"
 }

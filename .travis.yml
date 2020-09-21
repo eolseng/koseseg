@@ -7,7 +7,7 @@ services:
 
 env:
   global:
-    # Project Setup
+    # Project Setup - only update version! Project Name references GCP Project.
     - PROJECT_NAME=koseseg
     - PROJECT_VERSION=v21
 
@@ -25,19 +25,25 @@ cache:
   directories:
     - "$HOME/.cache/yarn"
     - ".next/cache"
+    - "$HOME/google-cloud-sdk/"
 
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
-  # Installs Terraform
-  - bash ./scripts/install_terraform
+  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
+    curl https://sdk.cloud.google.com | bash;
+    fi
+  - gcloud auth activate-service-account --key-file keyfile.json
 
 script:
   - npm run build
 
+before_deploy:
+  - bash ./scripts/install_terraform
+
 deploy:
   skip_cleanup: true
-  provider: script
+  provider: scriptª
   script: bash scripts/travis_deploy
   on:
     branch: master
