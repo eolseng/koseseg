@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ev
 
 # Used to check if the image tag already exists in the repository
 TAG_EXISTS="$(gcloud container images list-tags --format='get(tags)' "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME" | grep "$PROJECT_VERSION")"
