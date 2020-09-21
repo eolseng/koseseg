@@ -10,6 +10,11 @@ env:
     - PROJECT_NAME=koseseg
     - REGISTRY_HOST_NAME=eu.gcr.io
 
+cache:
+  directories:
+    # Cache of Google Cloud SDK
+    - "$HOME/google-cloud-sdk/"
+
 before_install:
   # Decrypt encrypted keyfile.json used for authenticating with Google Container Registry
   - openssl aes-256-cbc -K $encrypted_241002f0ef4b_key -iv $encrypted_241002f0ef4b_iv -in keyfile.json.enc -out keyfile.json -d
@@ -18,11 +23,12 @@ script:
   # Skipping tests because there are no tests
   - echo "Skipping tests"
 
-#before_deploy:
-#  # If the GCloud SDK is not already cached, download it and unpack it
-#  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
-#    curl https://sdk.cloud.google.com | bash;
-#    fi
+before_deploy:
+  # If the GCloud SDK is not already cached, download it and unpack it
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
+      rm -rf "$HOME/google-cloud-sdk";
+      curl https://sdk.cloud.google.com | bash > /dev/null;
+    fi
 
 deploy:
   skip_cleanup: true
