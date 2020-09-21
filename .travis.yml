@@ -25,7 +25,7 @@ cache:
   directories:
     - "$HOME/.cache/yarn"
     - ".next/cache"
-    - "$HOME/google-cloud-sdk/"
+#    - "$HOME/google-cloud-sdk/"
 
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
@@ -34,6 +34,7 @@ before_install:
     curl https://sdk.cloud.google.com | bash;
     fi
   - gcloud auth activate-service-account --key-file keyfile.json
+  - gcloud auth configure-docker
 
 script:
   - npm run build
