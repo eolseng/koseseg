@@ -9,6 +9,8 @@ env:
   global:
     - PROJECT_NAME=koseseg
     - REGISTRY_HOST_NAME=eu.gcr.io
+    - PATH=$PATH:${HOME}/google-cloud-sdk/bin
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 cache:
   directories:
@@ -25,9 +27,8 @@ script:
 
 before_deploy:
   # If the GCloud SDK is not already cached, download it and unpack it
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
-      rm -rf "$HOME/google-cloud-sdk";
-      curl https://sdk.cloud.google.com | bash > /dev/null;
+  - if [ ! -d ${HOME}/google-cloud-sdk ]; then
+    curl https://sdk.cloud.google.com | bash;
     fi
 
 deploy:
