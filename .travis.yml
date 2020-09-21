@@ -9,7 +9,7 @@ env:
   global:
     # Project Setup - only update version! Project Name references GCP Project.
     - PROJECT_NAME=koseseg
-    - PROJECT_VERSION=v21
+    - PROJECT_VERSION=v22
 
     # GCR Setup
     - REGISTRY_HOSTNAME=eu.gcr.io
