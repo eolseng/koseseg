@@ -27,6 +27,7 @@ cache:
     - "$HOME/.cache/yarn"
     - ".next/cache"
     - "$HOME/google-cloud-sdk/"
+    - "$HOME/bin/terraform/"
 
 before_install:
   # Decrypts the keyfile.json for the GCP Service Account
@@ -44,7 +45,7 @@ before_deploy:
   # Authenticate gcloud with the Service Account
   - gcloud auth activate-service-account --key-file keyfile.json
   # Authenticate Docker with gcloud credentials
-  - gcloud auth configure-docker $REGISTRY_HOSTNAME/$PROJECT_NAME
+  - gcloud auth configure-docker $REGISTRY_HOSTNAME
 
 deploy:
   skip_cleanup: true

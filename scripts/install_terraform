@@ -1,10 +1,16 @@
 #!/bin/bash
-# Exit the script early if a line fails (-e)
 set -e
-echo "Installing Terraform version ${TF_VERSION}"
-wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip  &> /dev/null
-unzip terraform_"$TF_VERSION"_linux_amd64.zip &> /dev/null
-sudo mv terraform "$HOME"/bin &> /dev/null
-ls "$HOME"/bin
-rm terraform_"$TF_VERSION"_linux_amd64.zip &> /dev/null
-echo "Done installing Terraform"
+
+echo "Setting up Terraform version ${TF_VERSION}"
+# Download and install Terraform if correct version does not exist in cache
+if [[ $(terraform --version) != *"$TF_VERSION"* ]]; then
+  echo "Not found in cache - downloading and installing"
+  rm -rf "$HOME"/bin/terraform
+  wget https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip &>/dev/null
+  unzip terraform_"$TF_VERSION"_linux_amd64.zip &>/dev/null
+  sudo mv terraform "$HOME"/bin &>/dev/null
+  rm terraform_"$TF_VERSION"_linux_amd64.zip &>/dev/null
+else
+  echo "Found in cache - continuing"
+fi
+echo "Done setting up Terraform"

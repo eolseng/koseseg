@@ -1,6 +1,4 @@
 #!/bin/bash
-
-# Exit the script early if a line fails (-e)
 set -e
 
 # Used to check if the image tag already exists in the repository
