@@ -6,11 +6,10 @@ services:
 env:
   global:
     - PROJECT_NAME=koseseg
-    - REGISTRY_HOST_NAME=eu.gcr.io
+    - REGISTRY_HOSTNAME=eu.gcr.io
 cache:
   directories:
     - "$HOME/.cache/yarn"
-    - node_modules
     - ".next/cache"
 
 before_install:
