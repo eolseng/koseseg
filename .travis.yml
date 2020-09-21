@@ -16,6 +16,7 @@ env:
 
       # Disable GCloud SDK Install prompts
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - PATH=$PATH:${HOME}/google-cloud-sdk/bin
 
     # Terraform Setup
     - TF_VERSION=0.13.3
