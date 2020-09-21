@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ls -a
 docker build -f travis.Dockerfile -t $PROJECT_NAME .
 
 # Login to Google Container Registry using encrypted Keyfile
