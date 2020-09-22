@@ -6,7 +6,7 @@ TAG_EXISTING="$(gcloud container images list-tags --filter="tags:$PROJECT_VERSIO
 
 # Build, tag and push to registry if the tag ($PROJECT_VERSION) does not exist in repository
 if [[ $TAG_EXISTING != *"$PROJECT_VERSION" ]]; then
-  echo "Building and pushing the Docker Image with tag $PROJECT_VERSION to the repository"
+  echo "Building and pushing the Docker Image to the repository"
 
   # Build the Docker Image
   docker build -f travis.Dockerfile -t "$PROJECT_NAME" .
@@ -18,8 +18,9 @@ if [[ $TAG_EXISTING != *"$PROJECT_VERSION" ]]; then
   # Tag and push image as '$PROJECT_VERSION' to GCR
   docker tag "$PROJECT_NAME" "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
   docker push "$REGISTRY_HOSTNAME"/"$PROJECT_NAME"/"$PROJECT_NAME":"$PROJECT_VERSION"
+  echo "Built and pushed image with tag '$PROJECT_VERSION' and 'latest' to the repository"
 else
-  echo "Image with tag $PROJECT_VERSION already exists in the repository."
+  echo "Image with tag $PROJECT_VERSION already exists in the repository. Skipping building and pushing."
 fi
 
 terraform init $TF_INIT_CLI_OPTIONS
