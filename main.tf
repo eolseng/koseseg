@@ -19,6 +19,7 @@ provider "google" {
 
 resource "google_cloud_run_service" "default" {
 
+  provider = "google"
   name = "koseseg"
   location = "europe-north1"
 
