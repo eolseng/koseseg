@@ -18,10 +18,8 @@ provider "google" {
 }
 
 resource "google_cloud_run_service" "default" {
-  provider = google
   name = "koseseg"
   location = "europe-north1"
-  service_account_email = "travis-ci@koseseg.iam.gserviceaccount.com"
 
   metadata {
     annotations = {
