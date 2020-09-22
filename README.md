@@ -1,39 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project for [www.SkalViKoseOss.no](https://www.skalvikoseoss.no)
 
-## Getting Started
+### Tech:
+* Hosted on `Google Cloud Platform` with `Cloud Run`
+* Private Image Repository on `Google Container Registry`
+* Infrastructure as Code (IaC) with `Terraform` with `Google Cloud Storage` as backend
+* Built, containerized and deployed with `Travis-CI`
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-
-## Travis-CI Setup:
-
-#### GCP Service Account
-The Service Account needs the following roles:
+#### GCP Service Account Roles for Travis-CI:
 * `Service Account User` - allows the account to run operations as a service account.
-* `Storage Admin` - allows the service account to access both the Google Container Registry and Terraform State bucket.
+* `Storage Admin` - allows the service account to access Cloud Storage for Container Registry and Terraform Backend.
 * `Cloud Run Admin` - allows the service account to have full control over Cloud Run resources.
